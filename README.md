@@ -6,6 +6,7 @@ This repo showcase how to use esbuild to bundle and minify your Node.js AWS Lamb
 
 1. Node.js
 2. AWS CDK
+   This sample showcases how to use esbuild to minify and bundle your Node.js AWS Lambda functions
 
 ## Install deps
 
