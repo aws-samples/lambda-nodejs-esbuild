@@ -1,0 +1,6 @@
+dist
+node_modules
+.DS_Store
+yarn-error.log
+large.zip
+unbundled.zip

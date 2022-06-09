@@ -1,11 +1,23 @@
-## My Project
+# Lambda Node.js esbuild sample
 
-TODO: Fill this README out!
+This repo showcase how to use esbuild to bundle and minify your Node.js AWS Lambda functions
 
-Be sure to:
+## Prerequisits
 
-* Change the title in this README
-* Edit your repository description on GitHub
+1. Node.js
+2. AWS CDK
+
+## Install deps
+
+    npm i
+
+## Build
+
+    npm run build
+
+## Deploy
+
+    npm run deploy
 
 ## Security
 
@@ -14,4 +26,3 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
-

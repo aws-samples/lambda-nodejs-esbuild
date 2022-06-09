@@ -1,0 +1,8 @@
+config:
+    phases:
+        - duration: 60
+          arrivalRate: 240
+scenarios:
+    - flow:
+          - get:
+                url: "{{ url }}"

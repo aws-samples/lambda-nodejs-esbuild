@@ -1,0 +1,22 @@
+{
+    "name": "lambda-nodejs-esbuild",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "build": "rm -rf dist && esbuild ./src/* --entry-names=[dir]/[name]/index --bundle --minify --sourcemap --platform=node --target=node16.14 --outdir=dist",
+        "package": "cd dist && for f in * ; do ([ -d \"$f\" ] && cd $f && zip ../$f.zip *) ; done",
+        "package:unbundled": "rm -rf node_modules unbundled.zip && npm i --only=prod && zip -r unbundled.zip src/* node_modules/*",
+        "package:large": "rm -rf node_modules large.zip && npm i && zip -r large.zip src/* node_modules/*",
+        "predeploy": "npm i && npm run build && npm run package:unbundled && npm run package:large",
+        "deploy": "cd infrastructure && npm run cdk deploy"
+    },
+    "dependencies": {
+        "@aws-sdk/client-dynamodb": "3.100.0",
+        "@aws-sdk/lib-dynamodb": "3.100.0"
+    },
+    "devDependencies": {
+        "esbuild": "0.14.42",
+        "aws-sdk": "2.1145.0"
+    }
+}
