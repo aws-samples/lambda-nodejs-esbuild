@@ -9,7 +9,8 @@
         "package:unbundled": "rm -rf node_modules unbundled.zip && npm i --only=prod && zip -r unbundled.zip src/* node_modules/*",
         "package:large": "rm -rf node_modules large.zip && npm i && zip -r large.zip src/* node_modules/*",
         "predeploy": "npm i && npm run build && npm run package:unbundled && npm run package:large",
-        "deploy": "cd infrastructure && npm run cdk deploy"
+        "deploy": "cd infrastructure && npm run cdk deploy",
+        "destroy": "cd infrastructure && npm run cdk destroy"
     },
     "dependencies": {
         "@aws-sdk/client-dynamodb": "3.100.0",
