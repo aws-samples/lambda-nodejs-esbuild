@@ -41,7 +41,7 @@ The URL can be found in the output of the deploy step.
     | parse @log /\d+:\/aws\/lambda\/[\w\d]+-(?<function>[\w\d]+)Func[\w\d]+-[\w\d]+/
     | parse @log /\d+:\/aws\/lambda\/[\w\d]+-[\w\d]+(?<arm>Arm)[\w\d]+-[\w\d]+/
     | stats
-    count(\*) as invocations,
+    count(*) as invocations,
     pct(@duration+greatest(@initDuration,0), 0) as p0,
     pct(@duration+greatest(@initDuration,0), 25) as p25,
     pct(@duration+greatest(@initDuration,0), 50) as p50,
