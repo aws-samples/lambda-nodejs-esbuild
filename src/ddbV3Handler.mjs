@@ -1,10 +1,15 @@
-const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const { DynamoDBDocumentClient, PutCommand } = require("@aws-sdk/lib-dynamodb");
+import {
+    DynamoDBClient,
+    DescribeEndpointsCommand,
+} from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 
 const ddbClient = new DynamoDBClient();
 const ddbDocClient = DynamoDBDocumentClient.from(ddbClient);
 
-exports.handler = async (event) => {
+await ddbClient.send(new DescribeEndpointsCommand());
+
+export const handler = async (event) => {
     await ddbDocClient.send(
         new PutCommand({
             TableName: process.env.TABLE_NAME,

@@ -16,7 +16,7 @@ import { HttpLambdaIntegration } from "@aws-cdk/aws-apigatewayv2-integrations-al
 import { RetentionDays } from "aws-cdk-lib/aws-logs";
 
 const SHARED_FUNCTION_PROPS = {
-    runtime: lambda.Runtime.NODEJS_16_X,
+    runtime: lambda.Runtime.NODEJS_18_X,
     logRetention: RetentionDays.ONE_WEEK,
     memorySize: 256,
     timeout: Duration.seconds(28),
@@ -113,6 +113,20 @@ export class AppStack extends Stack {
             "/v2-top-level": "ddbV2TopLevelHandler",
             "/v3": "ddbV3Handler",
         });
+
+        const fetchFunction = new lambda.Function(this, "Aws4FetchFunction", {
+            ...SHARED_FUNCTION_PROPS,
+            memorySize: 128,
+            handler: "index.handler",
+            code: lambda.Code.fromAsset(
+                path.resolve("..", "dist", "ddbAws4fetchHandler")
+            ),
+            environment: {
+                TABLE_NAME: table.tableName,
+            },
+        });
+
+        table.grantWriteData(fetchFunction);
 
         const helloFunction = new lambda.Function(this, "HelloFunction", {
             ...SHARED_FUNCTION_PROPS,

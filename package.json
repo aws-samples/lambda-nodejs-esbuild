@@ -2,9 +2,10 @@
     "name": "lambda-nodejs-esbuild",
     "version": "1.0.0",
     "main": "index.js",
+    "type": "module",
     "license": "MIT",
     "scripts": {
-        "build": "rm -rf dist && esbuild ./src/* --entry-names=[dir]/[name]/index --bundle --minify --sourcemap --platform=node --target=node16.14 --outdir=dist",
+        "build": "rm -rf dist && esbuild ./src/* --entry-names=[dir]/[name]/index --format=esm --bundle --minify --sourcemap --platform=node --target=node16.14 --outdir=dist",
         "package": "cd dist && for f in * ; do ([ -d \"$f\" ] && cd $f && zip ../$f.zip *) ; done",
         "package:unbundled": "rm -rf node_modules unbundled.zip && npm i --only=prod && zip -r unbundled.zip src/* node_modules/*",
         "package:large": "rm -rf node_modules large.zip && npm i && zip -r large.zip src/* node_modules/*",
@@ -13,11 +14,14 @@
         "destroy": "cd infrastructure && npm run cdk destroy"
     },
     "dependencies": {
-        "@aws-sdk/client-dynamodb": "3.100.0",
-        "@aws-sdk/lib-dynamodb": "3.100.0"
+        "@aws-sdk/client-dynamodb": "3.675.0",
+        "@aws-sdk/lib-dynamodb": "3.675.0",
+        "aws4fetch": "^1.0.20",
+        "node-fetch": "^3.3.2"
     },
     "devDependencies": {
-        "esbuild": "0.14.42",
-        "aws-sdk": "2.1145.0"
-    }
+        "aws-sdk": "2.1691.0",
+        "esbuild": "0.24.0"
+    },
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
