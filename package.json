@@ -14,7 +14,7 @@
         "destroy": "cd infrastructure && npm run cdk destroy"
     },
     "dependencies": {
-        "@aws-sdk/client-dynamodb": "3.687.0",
+        "@aws-sdk/client-dynamodb": "3.699.0",
         "@aws-sdk/lib-dynamodb": "3.675.0",
         "aws4fetch": "^1.0.20",
         "node-fetch": "^3.3.2"
